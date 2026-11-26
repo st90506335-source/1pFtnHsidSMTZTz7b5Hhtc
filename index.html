@@ -1,0 +1,870 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>娛樂雜貨鋪</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Space+Grotesk:wght@500;700&display=swap">
+<style>
+/* Layout: sticky slim header + one content column (max 1180px); phones get a bottom tab bar. Clean, low-noise, every item carries its source. */
+:root{
+  --bg:#F4F5F2; --surface:#FCFCFA; --surface-2:#ECEEE9; --line:#D9DCD4;
+  --ink:#161B22; --muted:#545B63;
+  --accent:#C2410C; --on-accent:#FFFFFF; --accent-soft:#FBE6DC; --accent-ink:#9A3412;
+  --promo:#1D4ED8; --promo-soft:#E2E9FF;
+  --ok:#166534; --ok-soft:#DCF3E3; --danger:#B91C1C; --danger-soft:#FDE4E4;
+  --hero-a:#1F2933; --hero-b:#3B2A22; --on-hero:#F4F5F2; --on-hero-muted:#C9CDD2;
+  --shadow:0 1px 2px rgba(22,27,34,.05),0 6px 20px rgba(22,27,34,.06);
+  --sans:'Noto Sans TC',system-ui,-apple-system,'PingFang TC','Microsoft JhengHei',sans-serif;
+  --latin:'Space Grotesk','Noto Sans TC',system-ui,sans-serif;
+  --r:14px; --tab-h:64px;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#12151A; --surface:#1A1F26; --surface-2:#232932; --line:#313843;
+  --ink:#ECEEF0; --muted:#A6AEB8;
+  --accent:#FF8A5C; --on-accent:#14171C; --accent-soft:#3A2419; --accent-ink:#FFB08F;
+  --promo:#9DB4FF; --promo-soft:#1F2846;
+  --ok:#7EDB9E; --ok-soft:#173222; --danger:#FF9A9A; --danger-soft:#3A1C1C;
+  --hero-a:#0D1014; --hero-b:#2A1C16; --on-hero:#ECEEF0; --on-hero-muted:#B4BAC2;
+  --shadow:0 1px 2px rgba(0,0,0,.4),0 6px 20px rgba(0,0,0,.35);
+  color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#12151A; --surface:#1A1F26; --surface-2:#232932; --line:#313843;
+  --ink:#ECEEF0; --muted:#A6AEB8;
+  --accent:#FF8A5C; --on-accent:#14171C; --accent-soft:#3A2419; --accent-ink:#FFB08F;
+  --promo:#9DB4FF; --promo-soft:#1F2846;
+  --ok:#7EDB9E; --ok-soft:#173222; --danger:#FF9A9A; --danger-soft:#3A1C1C;
+  --hero-a:#0D1014; --hero-b:#2A1C16; --on-hero:#ECEEF0; --on-hero-muted:#B4BAC2;
+  --shadow:0 1px 2px rgba(0,0,0,.4),0 6px 20px rgba(0,0,0,.35);
+  color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--surface)}
+a{color:inherit}
+button,input,select,textarea{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px;border-radius:6px}
+h1,h2,h3{margin:0;line-height:1.25;text-wrap:balance}
+p{margin:0}
+.wrap{max-width:1180px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.ic{width:20px;height:20px;flex:none}
+.ic.on path{fill:currentColor}
+.num{font-family:var(--latin);font-variant-numeric:tabular-nums}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* Notice + header */
+.notice{background:var(--surface-2);color:var(--muted);font-size:13px}
+.notice .wrap{padding-block:6px;display:flex;gap:8px;align-items:center;justify-content:center;text-align:center}
+header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--surface);border-bottom:1px solid var(--line)}
+header.top .wrap{display:flex;align-items:center;gap:20px;height:64px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;font-weight:900;font-size:19px;letter-spacing:.04em;white-space:nowrap}
+.logo-mark{width:30px;height:30px;border-radius:9px;display:grid;grid-template-columns:1fr 1fr;gap:3px;padding:5px;background:var(--ink)}
+.logo-mark i{border-radius:3px;background:var(--accent)}
+.logo-mark i:nth-child(2){background:#F2C14E}.logo-mark i:nth-child(3){background:#7FB3A6}.logo-mark i:nth-child(4){background:var(--bg)}
+nav.main{display:flex;gap:2px}
+nav.main a{text-decoration:none;padding:8px 12px;border-radius:10px;color:var(--muted);font-weight:500;font-size:15px;white-space:nowrap}
+nav.main a:hover{color:var(--ink);background:var(--surface-2)}
+nav.main a[aria-current="page"]{color:var(--ink);background:var(--surface-2);font-weight:700}
+.top-right{margin-left:auto;display:flex;align-items:center;gap:8px}
+.mini-search{display:flex;align-items:center;gap:6px;background:var(--surface-2);border-radius:999px;padding:0 6px 0 14px;height:40px;width:240px}
+.mini-search input{border:0;background:transparent;outline:none;width:100%;min-width:0;font-size:14px}
+.mini-search button{border:0;background:transparent;display:grid;place-items:center;width:32px;height:32px;border-radius:50%;cursor:pointer;color:var(--muted)}
+.icon-btn{display:grid;place-items:center;width:44px;height:44px;border-radius:12px;border:0;background:transparent;cursor:pointer;color:var(--ink);text-decoration:none}
+.icon-btn:hover{background:var(--surface-2)}
+.avatar{width:32px;height:32px;border-radius:50%;background:var(--accent);color:var(--on-accent);display:grid;place-items:center;font-weight:700;font-size:14px}
+
+/* Buttons, chips, badges */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:0 18px;border-radius:12px;border:1px solid var(--line);background:var(--surface);cursor:pointer;font-weight:700;font-size:15px;text-decoration:none;white-space:nowrap}
+.btn:hover{background:var(--surface-2)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
+.btn.primary:hover{filter:brightness(1.06)}
+.btn.danger{color:var(--danger);border-color:var(--danger)}
+.btn.ghost{border-color:transparent;background:transparent}
+.btn[disabled]{opacity:.55;cursor:not-allowed}
+.btn.sm{min-height:36px;padding:0 12px;font-size:14px;border-radius:10px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{min-height:40px;padding:0 14px;border-radius:999px;border:1px solid var(--line);background:var(--surface);cursor:pointer;font-size:14px;font-weight:500;color:var(--ink)}
+.chip[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:var(--bg)}
+.badge{display:inline-flex;align-items:center;gap:4px;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700;line-height:1.6;white-space:nowrap;background:var(--surface-2);color:var(--muted)}
+.badge.type{background:var(--surface-2);color:var(--ink)}
+.badge.ok{background:var(--ok-soft);color:var(--ok)}
+.badge.promo{background:var(--promo-soft);color:var(--promo)}
+.badge.warn{background:var(--accent-soft);color:var(--accent-ink)}
+.src{font-size:13px;color:var(--muted)}
+
+/* Sections */
+main{padding-bottom:64px}
+.view{padding-top:28px}
+.page-h{display:flex;flex-wrap:wrap;align-items:end;justify-content:space-between;gap:12px;margin-bottom:20px}
+.page-h h1{font-size:30px;font-weight:900}
+.page-h p{color:var(--muted)}
+.sec{margin-top:40px}
+.sec-h{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:14px}
+.sec-h h2{font-size:21px;font-weight:700}
+.sec-h a{font-size:14px;color:var(--accent-ink);font-weight:700;text-decoration:none;padding:10px 0}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:var(--r)}
+.grid{display:grid;gap:16px}
+.g2{grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr))}
+.g3{grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr))}
+.g4{grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr))}
+
+/* Hero */
+.hero{margin-top:20px;border-radius:20px;background:linear-gradient(135deg,var(--hero-a),var(--hero-b));color:var(--on-hero);padding:40px 32px}
+.hero h1{font-size:clamp(28px,4.4vw,44px);font-weight:900;letter-spacing:.01em}
+.hero p.sub{margin-top:10px;color:var(--on-hero-muted);font-size:17px}
+.sform{margin-top:24px;max-width:760px}
+.seg{display:inline-flex;gap:4px;padding:4px;border-radius:12px;background:rgba(255,255,255,.1);margin-bottom:10px}
+.seg button{min-height:38px;padding:0 14px;border:0;border-radius:9px;background:transparent;color:inherit;cursor:pointer;font-weight:500;font-size:14px}
+.seg button[aria-pressed="true"]{background:var(--surface);color:var(--ink);font-weight:700}
+.panel .seg,.view .seg.plain{background:var(--surface-2)}
+.sbox{display:flex;gap:8px;background:var(--surface);border-radius:14px;padding:6px;border:1px solid var(--line)}
+.sbox input{flex:1;min-width:0;border:0;outline:none;background:transparent;padding:0 12px;font-size:16px;color:var(--ink)}
+.hero .hint{margin-top:12px;font-size:13px;color:var(--on-hero-muted)}
+
+/* Category tiles */
+.tile{display:flex;flex-direction:column;gap:6px;padding:20px;border-radius:var(--r);background:var(--surface);border:1px solid var(--line);text-decoration:none;min-height:132px;transition:border-color .15s}
+.tile:hover{border-color:var(--accent)}
+.tile .ti{width:40px;height:40px;border-radius:11px;display:grid;place-items:center;margin-bottom:6px;color:#161B22}
+.tile b{font-size:17px}
+.tile span{font-size:14px;color:var(--muted)}
+
+/* List rows */
+.list{display:flex;flex-direction:column}
+.item{display:flex;align-items:center;gap:14px;padding:12px 16px;border-top:1px solid var(--line);min-height:68px}
+.item:first-child{border-top:0}
+.item .meta{flex:1;min-width:0}
+.item .meta b{display:block;font-size:15px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.item .meta span{font-size:13px;color:var(--muted)}
+.item .meta > span{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.item.active{background:var(--surface-2)}
+.rank{width:28px;text-align:center;font-family:var(--latin);font-weight:700;font-size:20px;color:var(--muted);flex:none}
+.cover{width:48px;height:48px;border-radius:10px;flex:none;display:grid;place-items:center;color:#161B22}
+.play-sm{width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:var(--surface);display:grid;place-items:center;cursor:pointer;flex:none;color:var(--ink)}
+.play-sm:hover{border-color:var(--accent);color:var(--accent-ink)}
+.fav{width:44px;height:44px;border:0;background:transparent;display:grid;place-items:center;cursor:pointer;border-radius:12px;color:var(--muted);flex:none}
+.fav:hover{background:var(--surface-2)}
+.fav[aria-pressed="true"]{color:var(--accent)}
+.c1{background:#F4A27F}.c2{background:#F2C14E}.c3{background:#7FB3A6}.c4{background:#B9B3E6}.c5{background:#E8B4C8}.c6{background:#A9CBE8}
+
+/* Music */
+.music-layout{display:grid;grid-template-columns:minmax(0,1fr) 380px;gap:20px;align-items:start}
+.video{aspect-ratio:16/9;max-width:100%;border-radius:var(--r) var(--r) 0 0;background:linear-gradient(135deg,var(--hero-a),var(--hero-b));color:var(--on-hero);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;text-align:center;padding:16px}
+.video small{color:var(--on-hero-muted);font-size:13px}
+.big-play{width:68px;height:68px;border-radius:50%;border:0;background:var(--accent);color:var(--on-accent);display:grid;place-items:center;cursor:pointer}
+.big-play .ic{width:30px;height:30px}
+.pbar-wrap{display:flex;align-items:center;gap:12px;padding:12px 18px;border-bottom:1px solid var(--line)}
+.track{flex:1;height:6px;border-radius:3px;background:var(--surface-2);overflow:hidden}
+.track i{display:block;height:100%;width:0;background:var(--accent);transition:width .3s linear}
+.now{padding:16px 18px;display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line)}
+.now h2{font-size:20px}
+.now p{color:var(--muted);font-size:14px}
+.lyr{padding:18px;display:flex;flex-direction:column;gap:4px}
+.lyr button{all:unset;cursor:pointer;padding:6px 10px;border-radius:8px;font-size:18px;color:var(--muted);transition:color .2s,background .2s}
+.lyr button:hover{background:var(--surface-2)}
+.lyr button:focus-visible{outline:3px solid var(--accent)}
+.lyr button.cur{color:var(--ink);font-weight:700;background:var(--accent-soft)}
+.rights{padding:12px 18px;border-top:1px solid var(--line);font-size:13px;color:var(--muted);display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.empty{padding:28px 20px;text-align:center;color:var(--muted);display:flex;flex-direction:column;gap:10px;align-items:center}
+.empty b{color:var(--ink);font-size:16px}
+
+/* Podcast */
+.pod-layout{display:grid;grid-template-columns:300px minmax(0,1fr);gap:20px;align-items:start}
+.show{all:unset;box-sizing:border-box;display:flex;gap:12px;align-items:center;padding:12px 14px;border-top:1px solid var(--line);cursor:pointer;width:100%;min-height:68px}
+.show:first-child{border-top:0}
+.show[aria-pressed="true"]{background:var(--surface-2)}
+.show:focus-visible{outline:3px solid var(--accent);outline-offset:-3px}
+.ep-head{padding:20px;border-bottom:1px solid var(--line);display:flex;flex-direction:column;gap:8px}
+.ep-head h2{font-size:22px}
+.ep-tabs{display:flex;gap:8px;flex-wrap:wrap;padding:14px 20px;border-bottom:1px solid var(--line)}
+.find{display:flex;gap:8px;padding:14px 20px;border-bottom:1px solid var(--line)}
+.find input{flex:1;min-width:0;height:44px;border-radius:10px;border:1px solid var(--line);background:var(--bg);padding:0 12px}
+.seg-row{display:flex;gap:14px;padding:14px 20px;border-top:1px solid var(--line);align-items:flex-start}
+.seg-row:first-child{border-top:0}
+.seg-row.cur{background:var(--accent-soft)}
+.ts{flex:none;min-width:72px;min-height:36px;border-radius:8px;border:1px solid var(--line);background:var(--surface);cursor:pointer;font-family:var(--latin);font-weight:700;font-size:14px;color:var(--accent-ink)}
+.seg-row b{display:block;font-size:15px}
+.seg-row p{font-size:14px;color:var(--muted);margin-top:2px}
+mark{background:var(--accent-soft);color:var(--ink);padding:0 2px;border-radius:3px}
+.seg-row.cur mark{background:var(--surface)}
+
+/* News */
+.news-card{display:flex;flex-direction:column;gap:10px;padding:20px}
+.news-card h3{font-size:18px;font-weight:700}
+.ai-sum{border-left:3px solid var(--line);padding-left:12px;color:var(--muted);font-size:15px}
+.news-meta{display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center;font-size:13px;color:var(--muted)}
+.kw{display:flex;flex-wrap:wrap;gap:6px}
+.kw span{font-size:12px;padding:2px 8px;border-radius:999px;border:1px solid var(--line);color:var(--muted)}
+.news-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:auto;padding-top:4px}
+
+/* Explore */
+.ask{display:flex;gap:8px;padding:8px;border-radius:16px;background:var(--surface);border:1px solid var(--line);box-shadow:var(--shadow)}
+.ask input{flex:1;min-width:0;border:0;outline:none;background:transparent;padding:0 12px;font-size:16px;color:var(--ink)}
+.answer{margin-top:20px;padding:22px;display:flex;flex-direction:column;gap:14px}
+.claim{display:flex;gap:12px;align-items:flex-start}
+.claim .badge{margin-top:3px;min-width:68px;justify-content:center}
+.claim p{flex:1;min-width:0}
+.claim sup{font-family:var(--latin);font-weight:700;color:var(--accent-ink);margin-left:2px}
+.srcs{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr))}
+.srcc{all:unset;box-sizing:border-box;cursor:pointer;display:flex;flex-direction:column;gap:4px;padding:12px 14px;border-radius:12px;border:1px solid var(--line);background:var(--bg)}
+.srcc:hover{border-color:var(--accent)}
+.srcc:focus-visible{outline:3px solid var(--accent)}
+.srcc b{font-size:14px}
+.skel{height:14px;border-radius:7px;background:var(--surface-2);animation:pulse 1.2s ease-in-out infinite}
+@keyframes pulse{50%{opacity:.5}}
+
+/* Charts */
+.tabs{display:flex;gap:4px;border-bottom:1px solid var(--line);margin-bottom:16px;overflow-x:auto}
+.tabs button{border:0;background:transparent;min-height:46px;padding:0 16px;cursor:pointer;font-weight:500;color:var(--muted);border-bottom:3px solid transparent;white-space:nowrap}
+.tabs button[aria-selected="true"]{color:var(--ink);font-weight:700;border-bottom-color:var(--accent)}
+.chart-layout{display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:20px;align-items:start}
+.metric{font-family:var(--latin);font-size:14px;color:var(--muted);text-align:right;white-space:nowrap}
+.trend-up{color:var(--ok);font-weight:700}
+.promo-box{padding:18px;display:flex;flex-direction:column;gap:10px;border-color:var(--promo)}
+.weights{padding:18px;display:flex;flex-direction:column;gap:10px}
+.w-row{display:grid;grid-template-columns:110px 1fr 40px;gap:10px;align-items:center;font-size:13px}
+.w-row .track{height:8px}
+.w-row .track i{transition:none}
+
+/* Account */
+.auth-card{max-width:460px;margin:0 auto;padding:28px;display:flex;flex-direction:column;gap:12px}
+.prov{display:flex;align-items:center;justify-content:center;gap:10px;min-height:48px;border-radius:12px;border:1px solid var(--line);background:var(--surface);cursor:pointer;font-weight:700;width:100%}
+.prov:hover{background:var(--surface-2)}
+.prov[disabled]{cursor:not-allowed;color:var(--muted);border-style:dashed}
+.prov .pl{width:22px;height:22px;border-radius:6px;display:grid;place-items:center;font-family:var(--latin);font-size:13px;font-weight:700;color:#fff}
+.acct{display:grid;grid-template-columns:300px minmax(0,1fr);gap:20px;align-items:start}
+.idrow{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:12px 0;border-top:1px solid var(--line)}
+.toggle{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 0;border-top:1px solid var(--line);cursor:pointer}
+.toggle input{width:22px;height:22px;accent-color:var(--accent)}
+.confirm{display:flex;flex-direction:column;gap:10px;padding:14px;border-radius:12px;background:var(--danger-soft);color:var(--ink);margin-top:10px}
+
+/* Form */
+.form{padding:24px;display:grid;gap:16px;max-width:720px}
+.field{display:flex;flex-direction:column;gap:6px}
+.field label{font-weight:700;font-size:14px}
+.field small{color:var(--muted);font-size:13px}
+.field input,.field select,.field textarea{min-height:46px;border-radius:10px;border:1px solid var(--line);background:var(--bg);padding:10px 12px;font-size:16px}
+.field textarea{min-height:130px;resize:vertical}
+.field.err input,.field.err textarea,.field.err select{border-color:var(--danger)}
+.err-msg{color:var(--danger);font-size:13px;font-weight:700}
+.row2{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr))}
+.success{padding:28px;display:flex;flex-direction:column;gap:12px;align-items:flex-start;max-width:720px}
+
+/* Footer */
+footer{border-top:1px solid var(--line);margin-top:24px;color:var(--muted);font-size:14px}
+footer .wrap{padding-block:28px;display:flex;flex-wrap:wrap;gap:12px 28px;justify-content:space-between}
+footer nav{display:flex;flex-wrap:wrap;gap:4px 18px}
+footer a,footer button.link{color:var(--muted);text-decoration:none;background:none;border:0;cursor:pointer;padding:10px 0;font-size:14px}
+footer a:hover,footer button.link:hover{color:var(--ink)}
+
+/* Toast + cookie + tabbar */
+.toast{position:fixed;left:50%;top:calc(env(safe-area-inset-top,0px) + 76px);transform:translateX(-50%);z-index:40;background:var(--ink);color:var(--bg);padding:10px 12px 10px 16px;border-radius:12px;display:flex;gap:12px;align-items:center;box-shadow:var(--shadow);max-width:calc(100vw - 32px);font-size:14px}
+.toast a,.toast button{color:var(--bg);font-weight:700;background:none;border:0;cursor:pointer;text-decoration:underline;padding:6px;white-space:nowrap}
+.cookie{position:fixed;left:0;right:0;bottom:0;z-index:35;padding-bottom:env(safe-area-inset-bottom,0px)}
+.cookie .in{margin:0 auto 12px;max-width:760px;width:calc(100% - 32px);background:var(--surface);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);padding:14px 16px;display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center;justify-content:space-between;font-size:14px}
+.cookie .in p{flex:1 1 280px;color:var(--muted)}
+.tabbar{display:none}
+
+@media (max-width:1020px){
+  nav.main,.mini-search{display:none}
+  .music-layout,.pod-layout,.chart-layout,.acct{grid-template-columns:minmax(0,1fr)}
+  .tabbar{display:grid;grid-template-columns:repeat(6,1fr);position:fixed;left:0;right:0;bottom:0;z-index:25;background:var(--surface);border-top:1px solid var(--line);padding:0 max(4px,env(safe-area-inset-right,0px)) env(safe-area-inset-bottom,0px) max(4px,env(safe-area-inset-left,0px))}
+  .tabbar a{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;height:var(--tab-h);text-decoration:none;color:var(--muted);font-size:11px;font-weight:500}
+  .tabbar a[aria-current="page"]{color:var(--accent-ink);font-weight:700}
+  main{padding-bottom:calc(var(--tab-h) + 40px + env(safe-area-inset-bottom,0px))}
+  footer{padding-bottom:calc(var(--tab-h) + env(safe-area-inset-bottom,0px))}
+  .cookie{bottom:calc(var(--tab-h) + env(safe-area-inset-bottom,0px));padding-bottom:0}
+}
+@media (max-width:560px){
+  .hero{padding:28px 20px}
+  .page-h h1{font-size:25px}
+  header.top .wrap{gap:8px}
+  .item{padding:10px 12px;gap:10px}
+  .cover{width:42px;height:42px}
+  .w-row{grid-template-columns:96px 1fr 36px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<div class="notice"><div class="wrap">靜態原型 v0.1｜所有歌曲、節目、新聞皆為示意資料，播放與登入均為模擬</div></div>
+
+<header class="top">
+  <div class="wrap">
+    <a class="logo" href="#home" aria-label="娛樂雜貨鋪 首頁"><span class="logo-mark" aria-hidden="true"><i></i><i></i><i></i><i></i></span>娛樂雜貨鋪</a>
+    <nav class="main" aria-label="主選單">
+      <a href="#home" data-nav="home">首頁</a>
+      <a href="#music" data-nav="music">音樂與歌詞</a>
+      <a href="#podcast" data-nav="podcast">Podcast</a>
+      <a href="#news" data-nav="news">新聞中心</a>
+      <a href="#explore" data-nav="explore">AI 探索</a>
+      <a href="#charts" data-nav="charts">排行榜</a>
+    </nav>
+    <div class="top-right">
+      <form class="mini-search" id="mini-search" role="search">
+        <label for="mini-q" class="sr">搜尋全站</label>
+        <input id="mini-q" placeholder="搜尋歌曲、節目、新聞">
+        <button aria-label="搜尋"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg></button>
+      </form>
+      <a class="icon-btn" href="#search" aria-label="搜尋" id="search-icon"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg></a>
+      <a class="btn sm" href="#account" id="acct-btn">登入</a>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="view" id="v-home"></section>
+  <section class="view" id="v-search" hidden></section>
+  <section class="view" id="v-music" hidden></section>
+  <section class="view" id="v-podcast" hidden></section>
+  <section class="view" id="v-news" hidden></section>
+  <section class="view" id="v-explore" hidden></section>
+  <section class="view" id="v-charts" hidden></section>
+  <section class="view" id="v-account" hidden></section>
+  <section class="view" id="v-contact" hidden></section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div><b style="color:var(--ink)">娛樂雜貨鋪</b>　乾淨、整合、可探索的多媒體內容平台</div>
+    <nav aria-label="頁尾">
+      <a href="#charts">排行榜</a>
+      <a href="#contact">合作與意見回饋</a>
+      <button class="link" type="button" id="open-cookie">Cookie 設定</button>
+      <a href="#account">隱私與帳號</a>
+    </nav>
+  </div>
+</footer>
+
+<nav class="tabbar" aria-label="快速選單">
+  <a href="#home" data-nav="home"><span data-ic="home"></span>首頁</a>
+  <a href="#music" data-nav="music"><span data-ic="music"></span>音樂</a>
+  <a href="#podcast" data-nav="podcast"><span data-ic="mic"></span>Podcast</a>
+  <a href="#news" data-nav="news"><span data-ic="news"></span>新聞</a>
+  <a href="#explore" data-nav="explore"><span data-ic="spark"></span>探索</a>
+  <a href="#account" data-nav="account"><span data-ic="user"></span>我的</a>
+</nav>
+
+<div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+
+<div class="cookie" id="cookie" hidden>
+  <div class="in">
+    <p>我們使用必要 Cookie 維持網站運作；分析 Cookie 只用於彙總統計，不公開個人行為。</p>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <button class="btn sm primary" type="button" data-cookie="essential">只用必要 Cookie</button>
+      <button class="btn sm" type="button" data-cookie="all">也允許分析 Cookie</button>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ---------- Icons ---------- */
+const I={
+  search:'<circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/>',
+  play:'<path d="M8 5.5v13l10.5-6.5z" fill="currentColor" stroke="none"/>',
+  pause:'<path d="M7 5h3.5v14H7zM13.5 5H17v14h-3.5z" fill="currentColor" stroke="none"/>',
+  heart:'<path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10Z"/>',
+  home:'<path d="M4 11 12 4l8 7v9h-5v-6H9v6H4z"/>',
+  music:'<path d="M9 18V6l10-2v12"/><circle cx="6.5" cy="18" r="2.5"/><circle cx="16.5" cy="16" r="2.5"/>',
+  mic:'<rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/>',
+  news:'<rect x="4" y="5" width="16" height="14" rx="2"/><path d="M8 9h8M8 13h8M8 17h5"/>',
+  spark:'<path d="M12 3c.6 4.2 2.8 6.4 7 7-4.2.6-6.4 2.8-7 7-.6-4.2-2.8-6.4-7-7 4.2-.6 6.4-2.8 7-7Z"/>',
+  chart:'<path d="M5 20V11M12 20V5M19 20v-6"/>',
+  user:'<circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/>',
+  ext:'<path d="M14 4h6v6M20 4l-9 9M18 14v6H4V6h6"/>',
+  check:'<path d="m5 12 5 5 9-10"/>',
+  mail:'<rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/>'
+};
+const ic=(n,on)=>`<svg class="ic${on?' on':''}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${I[n]}</svg>`;
+const $=(s,r=document)=>r.querySelector(s);
+const $$=(s,r=document)=>[...r.querySelectorAll(s)];
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const fmt=s=>`${Math.floor(s/60)}:${String(s%60).padStart(2,'0')}`;
+$$('[data-ic]').forEach(e=>e.outerHTML=ic(e.dataset.ic));
+
+/* ---------- Example data (fictional) ---------- */
+const SONGS=[
+  {id:'s1',title:'夜行列車',artist:'港邊樂團',dur:'4:12',c:'c1',plays:'有效播放 8.2 萬',lyrics:true},
+  {id:'s2',title:'晴天備忘錄',artist:'林以安',dur:'3:48',c:'c2',plays:'有效播放 6.9 萬',lyrics:true},
+  {id:'s3',title:'城市慢板',artist:'雨後 Trio',dur:'5:02',c:'c3',plays:'有效播放 5.1 萬',lyrics:false},
+  {id:'s4',title:'藍色便利店',artist:'阿哲與他的朋友',dur:'3:31',c:'c4',plays:'有效播放 4.4 萬',lyrics:true},
+  {id:'s5',title:'把燈留著',artist:'Mira 米拉',dur:'4:40',c:'c5',plays:'有效播放 3.8 萬',lyrics:false},
+  {id:'s6',title:'第十二號月台',artist:'南方合唱社',dur:'4:05',c:'c6',plays:'有效播放 3.2 萬',lyrics:true}
+];
+const LYRICS={
+  s1:['末班車的窗　映著街燈','我把今天　摺成一張票根','你說遠方　其實不遠','只要列車　還在往前','夜行列車　穿過整座城市','把沒說的話　都留在座位裡','下一站　會不會是你','（間奏）'],
+  s2:['鬧鐘還沒響　陽光先到','把待辦寫在　手背上','今天不趕路　只想慢慢走','晴天備忘錄　第一行寫你','風把便條紙　吹到街角','我追過去　順便看海','晴天備忘錄　最後一行寫我','（尾奏）'],
+  s4:['凌晨兩點的　藍色招牌','微波的聲音　像在說晚安','店員認得我　卻不知道我的名字','藍色便利店　收留一整晚的心事','買一瓶汽水　當作明天的勇氣','自動門打開　天就快亮了','藍色便利店　我們明天見','（間奏）'],
+  s6:['第十二號月台　風很大','你的行李　比想像中輕','廣播重複著　陌生的地名','我們揮手　像排練過很多次','火車開走了　影子還在','第十二號月台　我還在','把再見唱成　下次見','（尾奏）']
+};
+const SHOWS=[
+  {id:'p1',name:'雜貨鋪夜談',host:'阿凱、小魚',c:'c1',eps:[
+    {id:'e42',no:42,title:'串流時代，歌詞從哪裡來？',dur:2050,date:'11/24',tx:true},
+    {id:'e41',no:41,title:'Podcast 逐字稿能拿來做什麼',dur:1785,date:'11/17',tx:true}]},
+  {id:'p2',name:'科技早餐',host:'Joyce',c:'c6',eps:[{id:'e18',no:18,title:'降噪耳機到底怎麼降噪',dur:1350,date:'11/25',tx:false}]},
+  {id:'p3',name:'城市聲音採集',host:'老陳',c:'c3',eps:[{id:'e07',no:7,title:'清晨市場的聲音地圖',dur:1085,date:'11/21',tx:false}]},
+  {id:'p4',name:'週末電影院',host:'Nina、Leo',c:'c4',eps:[{id:'e63',no:63,title:'年末必看的五部紀錄片',dur:2480,date:'11/23',tx:false}]}
+];
+const SEGS={
+  e42:[
+    {s:0,title:'開場：本集主題',text:'兩位主持人聊到最近常被聽眾問：為什麼有些平台看得到歌詞，有些看不到。'},
+    {s:192,title:'歌詞授權的基本概念',text:'整理顯示、儲存、改作這幾種使用方式，各自需要不同的同意範圍；能播放音樂不代表能放歌詞。'},
+    {s:700,title:'同步歌詞 LRC 是怎麼做的',text:'LRC 是在每一行歌詞前面加上時間標記，播放時就能逐行亮起；可以人工對時，也能用工具輔助校正。'},
+    {s:1145,title:'平台該怎麼標示來源',text:'建議每一首歌都清楚寫出歌詞來源與授權範圍，授權到期時要能下架，聽眾也比較放心。'},
+    {s:1650,title:'聽眾提問',text:'回答聽眾關於翻譯歌詞、自己打的歌詞能不能分享等問題，並提醒正式使用前要確認權利。'}],
+  e41:[
+    {s:0,title:'開場',text:'這集談逐字稿：除了方便閱讀，還能讓節目內容被搜尋。'},
+    {s:320,title:'用逐字稿找到「那一段」',text:'聽眾常記得某個觀點，卻忘了在第幾分鐘；有了逐字稿和時間戳記，就能直接跳過去。'},
+    {s:850,title:'時間戳記與章節',text:'把一集切成幾個主題章節，每段寫一行摘要，讓第一次收聽的人快速決定要從哪裡開始。'},
+    {s:1380,title:'授權與隱私的提醒',text:'轉錄節目內容前要先取得節目方同意；來賓提到的私人資訊，整理時也要小心處理。'}]
+};
+const NEWS=[
+  {id:'n1',cat:'娛樂',src:'示意日報',time:'2 小時前',title:'北部大型戶外音樂祭公布第二波演出名單',sum:'主辦單位公布第二波共 18 組演出者，含 6 組首次登台的獨立樂團；單日票將於下週開賣。',kw:['音樂祭','售票','獨立樂團'],group:3},
+  {id:'n2',cat:'科技',src:'範例新聞網',time:'4 小時前',title:'串流平台第三季收聽時數成長，Podcast 類別增幅最大',sum:'業者季報顯示整體收聽時數較上季成長，其中 Podcast 增幅居各類別之首，知識型節目占比提高。',kw:['串流','Podcast','季報']},
+  {id:'n3',cat:'生活',src:'城市快訊',time:'5 小時前',title:'週末北部山區午後雷陣雨機率高，登山民眾留意天氣',sum:'氣象單位提醒週六、週日午後山區易有局部雷陣雨，建議上午出發並攜帶雨具。',kw:['天氣','週末','登山']},
+  {id:'n4',cat:'生活',src:'示意日報',time:'昨天',title:'獨立書店聯合推出夜間朗讀活動',sum:'十多家獨立書店本月起每週五晚間輪流舉辦朗讀會，部分場次將製成 Podcast 公開收聽。',kw:['書店','朗讀','活動']},
+  {id:'n5',cat:'科技',src:'範例新聞網',time:'昨天',title:'新款耳機降噪晶片發表，主打低延遲與長續航',sum:'晶片廠發表新一代降噪方案，宣稱延遲降低並延長續航，預計明年上半年進入消費性產品。',kw:['耳機','晶片','降噪']},
+  {id:'n6',cat:'娛樂',src:'城市快訊',time:'2 天前',title:'年度音樂獎項公布入圍名單，新人類別競爭激烈',sum:'新人類別有 5 組入圍者，其中 3 組以線上發行起家，頒獎典禮將於下月舉行。',kw:['音樂獎','入圍','新人']}
+];
+const CHARTS={
+  songs:{label:'熱門歌曲',rows:SONGS.map(s=>({t:s.title,sub:s.artist,m:s.plays,go:['music',s.id]})),
+    promo:{t:'新專輯《海風筆記》',sub:'港邊樂團',note:'推廣期間 11/20–12/03'}},
+  eps:{label:'Podcast 單集',rows:[
+    {t:'串流時代，歌詞從哪裡來？',sub:'雜貨鋪夜談 EP42',m:'平均收聽 71%',go:['podcast','e42']},
+    {t:'降噪耳機到底怎麼降噪',sub:'科技早餐 EP18',m:'平均收聽 66%',go:['podcast','e18']},
+    {t:'年末必看的五部紀錄片',sub:'週末電影院 EP63',m:'平均收聽 63%',go:['podcast','e63']},
+    {t:'Podcast 逐字稿能拿來做什麼',sub:'雜貨鋪夜談 EP41',m:'平均收聽 60%',go:['podcast','e41']},
+    {t:'清晨市場的聲音地圖',sub:'城市聲音採集 EP7',m:'平均收聽 58%',go:['podcast','e07']}],
+    promo:{t:'《週末電影院》特別企劃',sub:'週末電影院',note:'編輯推薦 · 11/22–11/30'},editor:true},
+  kw:{label:'搜尋關鍵字',rows:[
+    {t:'音樂祭',sub:'全站搜尋',m:'↑ 42%',up:true,q:'音樂祭'},{t:'同步歌詞',sub:'音樂',m:'↑ 18%',up:true,q:'歌詞'},
+    {t:'降噪耳機',sub:'全站搜尋',m:'↑ 9%',up:true,q:'降噪'},{t:'逐字稿',sub:'Podcast',m:'持平',q:'逐字稿'},{t:'週末天氣',sub:'新聞',m:'持平',q:'天氣'}]},
+  ai:{label:'AI 探索主題',rows:[
+    {t:'歌詞授權與來源標示',sub:'3 個來源',m:'本週 1,240 次',go:['explore']},{t:'通勤適合聽的 Podcast',sub:'5 個來源',m:'本週 980 次',go:['explore']},
+    {t:'年末音樂活動整理',sub:'4 個來源',m:'本週 760 次',go:['explore']}]}
+};
+const ANSWER={
+  parts:[
+    {tag:'來源事實',cls:'ok',text:'《雜貨鋪夜談》EP42 在 11:40 說明同步歌詞（LRC）的做法，並提到能播放音樂不代表能顯示完整歌詞。',refs:[1]},
+    {tag:'來源事實',cls:'ok',text:'同一集 19:05 建議平台清楚標示歌詞來源與授權範圍，授權到期時要能下架。',refs:[2]},
+    {tag:'評論',cls:'',text:'主持人認為，清楚的來源標示比單純放上歌詞更能讓聽眾信任平台。',refs:[2]},
+    {tag:'推測',cls:'warn',text:'相關討論近期可能增加；目前索引的內容還不夠多，無法判斷是否成為趨勢。',refs:[]}],
+  srcs:[
+    {type:'Podcast',title:'雜貨鋪夜談 EP42',at:'11:40 同步歌詞 LRC 是怎麼做的',go:['podcast','e42',2]},
+    {type:'Podcast',title:'雜貨鋪夜談 EP42',at:'19:05 平台該怎麼標示來源',go:['podcast','e42',3]},
+    {type:'新聞',title:'串流平台第三季收聽時數成長',at:'範例新聞網 · 4 小時前',go:['news','n2']}]
+};
+const allEps=SHOWS.flatMap(sh=>sh.eps.map(e=>({...e,show:sh})));
+const epById=id=>allEps.find(e=>e.id===id);
+
+/* ---------- State ---------- */
+const store={get(k,d){try{const v=localStorage.getItem('zhp-'+k);return v===null?d:JSON.parse(v)}catch(e){return d}},set(k,v){try{localStorage.setItem('zhp-'+k,JSON.stringify(v))}catch(e){}}};
+const S={
+  user:store.get('user',null), favs:new Set(store.get('favs',[])), history:store.get('history',[]),
+  prefs:store.get('prefs',{lyrics:true,personal:true}),
+  mode:'all', q:'', song:'s1', playing:false, t:0, show:'p1', ep:'e42', pt:0, pplaying:false, findQ:'',
+  newsCat:'全部', chart:'songs', ask:null, asking:false, sent:null, confirmDel:false
+};
+const save=()=>{store.set('user',S.user);store.set('favs',[...S.favs]);store.set('history',S.history.slice(0,20));store.set('prefs',S.prefs)};
+
+/* ---------- Toast (one at a time) ---------- */
+let toastT;
+function toast(msg,action){
+  const t=$('#toast');
+  t.innerHTML=`<span>${esc(msg)}</span>`+(action?`<a href="#${action[1]}">${esc(action[0])}</a>`:'');
+  t.hidden=false; clearTimeout(toastT); toastT=setTimeout(()=>t.hidden=true,3600);
+}
+
+/* ---------- Shared pieces ---------- */
+function favBtn(id,label){
+  const on=S.favs.has(id);
+  return `<button class="fav" data-fav="${id}" aria-pressed="${on}" aria-label="${on?'取消收藏':'收藏'} ${esc(label)}">${ic('heart',on)}</button>`;
+}
+function songRow(s,i,opt={}){
+  return `<div class="item${opt.active?' active':''}">
+    ${opt.rank?`<span class="rank">${i+1}</span>`:''}
+    <span class="cover ${s.c}">${ic('music')}</span>
+    <div class="meta"><b>${esc(s.title)}</b><span>${esc(s.artist)} · <span class="num">${s.dur}</span> · 來源 YouTube</span></div>
+    <button class="play-sm" data-song="${s.id}" aria-label="播放 ${esc(s.title)}">${ic('play')}</button>
+    ${favBtn(s.id,s.title)}
+  </div>`;
+}
+function searchForm(id,dark){
+  const modes=[['all','全站'],['music','音樂'],['podcast','Podcast']];
+  return `<form class="sform" data-sform role="search" style="${dark?'':'margin-top:0'}">
+    <div class="seg${dark?'':' plain'}" role="group" aria-label="搜尋模式">${modes.map(([k,l])=>`<button type="button" data-mode="${k}" aria-pressed="${S.mode===k}">${l}</button>`).join('')}</div>
+    <div class="sbox"><label for="${id}" class="sr">搜尋內容</label>
+      <input id="${id}" name="q" value="${esc(S.q)}" placeholder="${S.mode==='music'?'輸入歌名、歌手，或貼上 YouTube 網址':S.mode==='podcast'?'搜尋節目、單集或逐字稿裡的話題':'搜尋歌曲、Podcast、新聞'}" autocomplete="off">
+      <button class="btn primary">${ic('search')}搜尋</button></div>
+  </form>`;
+}
+function goto(arr){
+  const [v,id,seg]=arr;
+  if(v==='music'){selectSong(id,false)}
+  if(v==='podcast'){const e=epById(id);if(e){S.show=e.show.id;S.ep=id;S.pt=seg!=null&&SEGS[id]?SEGS[id][seg].s:0;S.findQ=''}}
+  if(v==='news'&&id){S.newsCat='全部';S.newsFocus=id}
+  if(location.hash==='#'+v) render(); else location.hash=v;
+}
+function addHistory(label){if(!S.user)return;S.history=[{label,at:new Date().toLocaleTimeString('zh-TW',{hour:'2-digit',minute:'2-digit'})},...S.history.filter(h=>h.label!==label)].slice(0,20);save()}
+
+/* ---------- Views ---------- */
+const V={};
+V.home=()=>`
+  <div class="hero">
+    <h1>音樂、Podcast、新聞，一個地方找齊。</h1>
+    <p class="sub">畫面乾淨、內容整合，每一筆都標示來源。</p>
+    ${searchForm('home-q',true)}
+    <p class="hint">試試看：「夜行列車」、「歌詞」、「音樂祭」</p>
+  </div>
+  <div class="sec grid g4">
+    <a class="tile" href="#music"><span class="ti c1">${ic('music')}</span><b>音樂與歌詞</b><span>官方播放器搭配同步歌詞</span></a>
+    <a class="tile" href="#podcast"><span class="ti c2">${ic('mic')}</span><b>Podcast</b><span>直接跳到你想聽的那一段</span></a>
+    <a class="tile" href="#news"><span class="ti c3">${ic('news')}</span><b>新聞中心</b><span>AI 摘要，一鍵前往原文</span></a>
+    <a class="tile" href="#explore"><span class="ti c4">${ic('spark')}</span><b>AI 探索</b><span>用一句話跨內容找答案</span></a>
+  </div>
+  <div class="sec grid g2">
+    <div>
+      <div class="sec-h"><h2>熱門歌曲</h2><a href="#charts">看完整排行</a></div>
+      <div class="panel list">${SONGS.slice(0,4).map((s,i)=>songRow(s,i,{rank:true})).join('')}</div>
+    </div>
+    <div>
+      <div class="sec-h"><h2>新聞摘要</h2><a href="#news">進入新聞中心</a></div>
+      <div class="panel list">${NEWS.slice(0,4).map(n=>`
+        <div class="item"><div class="meta"><b>${esc(n.title)}</b><span>${n.src} · ${n.time} · ${n.cat}</span></div>
+        <button class="btn sm" data-go='["news","${n.id}"]'>摘要</button></div>`).join('')}</div>
+    </div>
+  </div>
+  <div class="sec">
+    <div class="sec-h"><h2>Podcast 精選片段</h2><a href="#podcast">所有節目</a></div>
+    <div class="grid g3">${[['e42',2],['e41',1],['e42',3]].map(([e,i])=>{const ep=epById(e),sg=SEGS[e][i];return `
+      <div class="panel news-card">
+        <div class="news-meta"><span class="badge type">Podcast</span>${esc(ep.show.name)} EP${ep.no}</div>
+        <h3>${esc(sg.title)}</h3><p class="src">${esc(sg.text)}</p>
+        <div class="news-actions"><button class="btn sm primary" data-go='["podcast","${e}",${i}]'>${ic('play')}從 <span class="num">${fmt(sg.s)}</span> 開始聽</button></div>
+      </div>`}).join('')}</div>
+  </div>
+  <div class="sec panel" style="padding:24px;display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:space-between">
+    <div><h2 style="font-size:21px">不知道從哪裡開始？問 AI 探索</h2><p class="src" style="margin-top:4px">回答會附上來源與時間點，並分開標示事實、評論與推測。</p></div>
+    <div class="chips">${['最近大家在聊歌詞授權嗎？','通勤適合聽什麼？'].map(q=>`<button class="chip" data-ask="${q}">${q}</button>`).join('')}</div>
+  </div>`;
+
+V.search=()=>{
+  const q=S.q.trim().toLowerCase();
+  let body='';
+  if(!q){body=`<div class="panel empty"><b>輸入關鍵字開始搜尋</b><span>可以搜尋歌名、歌手、節目名稱、逐字稿裡的話題或新聞標題。</span></div>`}
+  else{
+    const has=t=>t.toLowerCase().includes(q);
+    const songs=S.mode!=='podcast'?SONGS.filter(s=>has(s.title)||has(s.artist)):[];
+    const segs=S.mode!=='music'?Object.entries(SEGS).flatMap(([e,arr])=>arr.map((sg,i)=>({e,i,sg})).filter(x=>has(x.sg.title)||has(x.sg.text))):[];
+    const eps=S.mode!=='music'?allEps.filter(e=>has(e.title)||has(e.show.name)):[];
+    const news=S.mode==='all'?NEWS.filter(n=>has(n.title)||has(n.sum)||n.kw.some(has)):[];
+    const total=songs.length+segs.length+eps.length+news.length;
+    if(!total){body=`<div class="panel empty"><b>找不到「${esc(S.q)}」的結果</b><span>換個關鍵字，或切換到「全站」模式再試一次。</span><div class="chips" style="justify-content:center">${['歌詞','音樂祭','降噪'].map(k=>`<button class="chip" data-q="${k}">${k}</button>`).join('')}</div></div>`}
+    else{
+      body=`<p class="src" style="margin-bottom:12px">共 <span class="num">${total}</span> 筆結果</p>`;
+      if(songs.length) body+=`<div class="sec-h"><h2>歌曲 <span class="badge type">音樂</span></h2></div><div class="panel list">${songs.map((s,i)=>songRow(s,i)).join('')}</div>`;
+      if(eps.length||segs.length) body+=`<div class="sec-h" style="margin-top:24px"><h2>Podcast <span class="badge type">Podcast</span></h2></div><div class="panel list">
+        ${eps.map(e=>`<div class="item"><span class="cover ${e.show.c}">${ic('mic')}</span><div class="meta"><b>${esc(e.title)}</b><span>${esc(e.show.name)} EP${e.no} · 單集</span></div><button class="btn sm" data-go='["podcast","${e.id}"]'>收聽</button></div>`).join('')}
+        ${segs.map(x=>{const ep=epById(x.e);return `<div class="item"><span class="cover ${ep.show.c}">${ic('mic')}</span><div class="meta"><b>${esc(x.sg.title)}</b><span>${esc(ep.show.name)} EP${ep.no} · 逐字稿命中 <span class="num">${fmt(x.sg.s)}</span></span></div><button class="btn sm" data-go='["podcast","${x.e}",${x.i}]'>跳到 <span class="num">${fmt(x.sg.s)}</span></button></div>`}).join('')}</div>`;
+      if(news.length) body+=`<div class="sec-h" style="margin-top:24px"><h2>新聞 <span class="badge type">新聞</span></h2></div><div class="panel list">${news.map(n=>`<div class="item"><div class="meta"><b>${esc(n.title)}</b><span>${n.src} · ${n.time}</span></div><button class="btn sm" data-go='["news","${n.id}"]'>摘要</button></div>`).join('')}</div>`;
+    }
+  }
+  return `<div class="page-h"><h1>搜尋</h1></div><div class="panel" style="padding:16px;margin-bottom:20px">${searchForm('search-q',false)}</div>${body}`;
+};
+
+V.music=()=>{
+  const s=SONGS.find(x=>x.id===S.song), L=LYRICS[s.id], step=32/(L?L.length:1);
+  return `<div class="page-h"><div><h1>音樂與歌詞</h1><p>使用官方 YouTube 播放器；歌詞只顯示已取得授權的內容。</p></div></div>
+  <div class="music-layout">
+    <div class="panel">
+      <div class="video">
+        <button class="big-play" id="pp" aria-label="${S.playing?'暫停':'播放'}">${ic(S.playing?'pause':'play')}</button>
+        <b>${esc(s.title)}｜${esc(s.artist)}</b>
+        <small>正式版在此嵌入 YouTube 官方 IFrame 播放器；原型以示意畫面代替</small>
+      </div>
+      <div class="pbar-wrap"><span class="num src" id="ptime">${fmt(S.t)}</span><div class="track"><i id="pbar" style="width:${S.t/32*100}%"></i></div><span class="num src">0:32 試聽</span></div>
+      <div class="now"><div><h2>${esc(s.title)}</h2><p>${esc(s.artist)} · 影片來源 YouTube 官方頻道</p></div>${favBtn(s.id,s.title)}</div>
+      ${L&&S.prefs.lyrics?`<div class="lyr" id="lyr">${L.map((l,i)=>`<button data-seek="${Math.round(i*step)}" data-s="${i*step}" data-e="${(i+1)*step}">${esc(l)}</button>`).join('')}</div>
+        <div class="rights"><span class="badge ok">${ic('check')}已授權</span>歌詞來源：授權合作（示意）· LRC 人工對時 · 點任一行可跳轉</div>`
+      : L?`<div class="empty"><b>歌詞顯示已關閉</b><span>你在帳號偏好設定中關閉了同步歌詞。</span><a class="btn sm" href="#account">前往偏好設定</a></div>`
+      :`<div class="empty"><b>這首歌暫不提供歌詞</b><span>尚未取得歌詞授權，所以只提供播放。取得授權後會自動顯示。</span></div>
+        <div class="rights"><span class="badge warn">未授權</span>平台不會自行重製未授權的歌詞</div>`}
+    </div>
+    <div>
+      <div class="sec-h"><h2>熱門歌曲</h2></div>
+      <div class="panel list">${SONGS.map((x,i)=>songRow(x,i,{active:x.id===s.id})).join('')}</div>
+      <p class="src" style="margin-top:10px">也可以在上方搜尋框選「音樂」模式，貼上 YouTube 網址。</p>
+    </div>
+  </div>`;
+};
+
+V.podcast=()=>{
+  const sh=SHOWS.find(x=>x.id===S.show), ep=epById(S.ep)||sh.eps[0], segs=SEGS[ep.id]||[];
+  const q=S.findQ.trim();
+  const shown=q?segs.map((sg,i)=>({sg,i})).filter(x=>(x.sg.title+x.sg.text).includes(q)):segs.map((sg,i)=>({sg,i}));
+  const curIdx=segs.reduce((a,sg,i)=>S.pt>=sg.s?i:a,0);
+  const hl=t=>q?esc(t).split(esc(q)).join(`<mark>${esc(q)}</mark>`):esc(t);
+  return `<div class="page-h"><div><h1>Podcast</h1><p>優先使用官方播放器與原始連結；有授權的節目才提供逐字稿與片段搜尋。</p></div></div>
+  <div class="pod-layout">
+    <div class="panel list" role="group" aria-label="節目">${SHOWS.map(x=>`<button class="show" data-show="${x.id}" aria-pressed="${x.id===sh.id}"><span class="cover ${x.c}">${ic('mic')}</span><span class="meta"><b style="display:block">${esc(x.name)}</b><span class="src">主持：${esc(x.host)}</span></span></button>`).join('')}</div>
+    <div class="panel">
+      <div class="ep-head">
+        <div class="news-meta"><span class="badge type">Podcast</span>${esc(sh.name)} · EP${ep.no} · <span class="num">${ep.date}</span> · <span class="num">${fmt(ep.dur)}</span></div>
+        <h2>${esc(ep.title)}</h2>
+        <div style="display:flex;flex-wrap:wrap;gap:8px;align-items:center">
+          <button class="btn primary" id="podplay">${ic(S.pplaying?'pause':'play')}<span>${S.pplaying?'暫停':'播放'}</span> <span class="num" id="pt">${fmt(S.pt)}</span></button>
+          <button class="btn" data-ext>${ic('ext')}原始節目頁</button>
+          ${favBtn(ep.id,ep.title)}
+        </div>
+        <p class="src">播放器為示意；正式版使用節目官方嵌入播放器。</p>
+      </div>
+      ${sh.eps.length>1?`<div class="ep-tabs" role="group" aria-label="單集">${sh.eps.map(e=>`<button class="chip" data-ep="${e.id}" aria-pressed="${e.id===ep.id}">EP${e.no}</button>`).join('')}</div>`:''}
+      ${ep.tx?`
+        <div class="find"><label for="findq" class="sr">在本集逐字稿中搜尋</label><input id="findq" placeholder="在本集逐字稿裡找話題，例如：LRC、授權" value="${esc(S.findQ)}"></div>
+        <div>${shown.length?shown.map(({sg,i})=>`<div class="seg-row${i===curIdx?' cur':''}"><button class="ts" data-pt="${sg.s}" aria-label="跳到 ${fmt(sg.s)}">${fmt(sg.s)}</button><div><b>${hl(sg.title)}</b><p>${hl(sg.text)}</p></div></div>`).join('')
+          :`<div class="empty"><b>本集逐字稿裡沒有「${esc(q)}」</b><span>換個說法試試，或清除搜尋看所有段落。</span><button class="btn sm" data-clearfind>清除搜尋</button></div>`}</div>
+        <div class="rights"><span class="badge ok">${ic('check')}已授權轉錄</span>逐字稿與摘要經節目方同意（示意）· AI 摘要，生成於 11/25</div>`
+      :`<div class="empty"><b>這個節目沒有逐字稿</b><span>尚未取得轉錄授權，因此只提供官方播放器與原始連結，不建立逐字稿或片段索引。</span></div>`}
+    </div>
+  </div>`;
+};
+
+V.news=()=>{
+  const cats=['全部','娛樂','科技','生活'];
+  const list=NEWS.filter(n=>S.newsCat==='全部'||n.cat===S.newsCat);
+  return `<div class="page-h"><div><h1>新聞中心</h1><p>聚合標題與 AI 摘要；全文請前往原媒體閱讀。</p></div></div>
+  <div class="chips" role="group" aria-label="新聞分類" style="margin-bottom:18px">${cats.map(c=>`<button class="chip" data-cat="${c}" aria-pressed="${S.newsCat===c}">${c}</button>`).join('')}</div>
+  <div class="grid g3">${list.map(n=>`
+    <article class="panel news-card" id="news-${n.id}" style="${S.newsFocus===n.id?'border-color:var(--accent)':''}">
+      <div class="news-meta"><span class="badge type">${n.cat}</span><b>${n.src}</b><span>${n.time}</span>${n.group?`<span class="badge">同一事件 · ${n.group} 家媒體</span>`:''}</div>
+      <h3>${esc(n.title)}</h3>
+      <p class="ai-sum">${esc(n.sum)}</p>
+      <p class="src">${ic('spark')} AI 摘要 · 依原文標題與導言生成 · 僅供快速瀏覽</p>
+      <div class="kw">${n.kw.map(k=>`<span>${k}</span>`).join('')}</div>
+      <div class="news-actions"><button class="btn sm primary" data-ext>${ic('ext')}閱讀原文</button>${favBtn(n.id,n.title)}</div>
+    </article>`).join('')}</div>
+  <p class="src" style="margin-top:16px">平台不轉載新聞全文與未授權圖片。摘要有誤？<a href="#contact">回報問題</a></p>`;
+};
+
+V.explore=()=>{
+  const sugg=['最近大家在聊歌詞授權嗎？','通勤適合聽的 Podcast 片段','這週音樂祭相關新聞'];
+  let res='';
+  if(S.asking) res=`<div class="panel answer" aria-busy="true"><p class="src">正在整理已索引的 Podcast 與新聞…</p><div class="skel" style="width:90%"></div><div class="skel" style="width:75%"></div><div class="skel" style="width:82%"></div></div>`;
+  else if(S.ask) res=`<div class="panel answer">
+      <div class="news-meta"><span class="badge">示意回答</span>你的問題：<b style="color:var(--ink)">${esc(S.ask)}</b></div>
+      ${ANSWER.parts.map(p=>`<div class="claim"><span class="badge ${p.cls}">${p.tag}</span><p>${esc(p.text)}${p.refs.map(r=>`<sup>[${r}]</sup>`).join('')}</p></div>`).join('')}
+      <div><p class="src" style="margin-bottom:8px">來源（點擊前往對應片段）</p><div class="srcs">${ANSWER.srcs.map((s,i)=>`<button class="srcc" data-go='${JSON.stringify(s.go)}'><span class="news-meta"><span class="badge type">${s.type}</span><span class="num">[${i+1}]</span></span><b>${esc(s.title)}</b><span class="src">${esc(s.at)}</span></button>`).join('')}</div></div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn sm" data-report>這個回答有錯</button><button class="btn sm ghost" data-newask>問別的問題</button></div>
+    </div>`;
+  else res=`<div class="panel empty" style="margin-top:20px"><b>問一個問題，從已索引的內容裡找答案</b><span>原型會回傳固定的示意回答，用來展示呈現方式。</span></div>`;
+  return `<div class="page-h"><div><h1>AI 探索</h1><p>跨新聞與 Podcast 回答，每一句都附來源，並分開標示事實、評論與推測。</p></div></div>
+  <form class="ask" id="askf"><label for="askq" class="sr">輸入問題</label><input id="askq" placeholder="例如：最近大家在聊歌詞授權嗎？" autocomplete="off"><button class="btn primary">${ic('spark')}探索</button></form>
+  <p class="err-msg" id="ask-err" hidden style="margin-top:8px">請先輸入一個問題。</p>
+  <div class="chips" style="margin-top:12px">${sugg.map(q=>`<button class="chip" data-ask="${q}">${q}</button>`).join('')}</div>
+  ${res}`;
+};
+
+V.charts=()=>{
+  const c=CHARTS[S.chart];
+  return `<div class="page-h"><div><h1>排行榜</h1><p>名次只依自然熱度計算；合作與編輯推薦另外標示，不計入名次。</p></div><span class="src">每日 06:00 更新（示意）</span></div>
+  <div class="tabs" role="tablist">${Object.entries(CHARTS).map(([k,v])=>`<button role="tab" data-chart="${k}" aria-selected="${S.chart===k}">${v.label}</button>`).join('')}</div>
+  <div class="chart-layout">
+    <div class="panel list" aria-label="自然熱度排名">${c.rows.map((r,i)=>`<div class="item"><span class="rank">${i+1}</span><div class="meta"><b>${esc(r.t)}</b><span>${esc(r.sub)}</span></div><span class="metric ${r.up?'trend-up':''}">${r.m}</span>${r.go?`<button class="btn sm" data-go='${JSON.stringify(r.go)}'>前往</button>`:`<button class="btn sm" data-q="${r.q}">搜尋</button>`}</div>`).join('')}</div>
+    <div class="grid">
+      ${c.promo?`<div class="panel promo-box"><span class="badge promo" style="align-self:flex-start">${c.editor?'編輯推薦':'合作推薦'}</span><b style="font-size:17px">${esc(c.promo.t)}</b><span class="src">${esc(c.promo.sub)} · ${esc(c.promo.note)}</span><p class="src">此為推廣內容，不影響左側自然排名，到期自動下架。</p></div>`:''}
+      ${S.chart==='eps'?`<div class="panel weights"><b>Podcast 熱度怎麼算</b>${[['點擊（去重後）',20],['有效播放',25],['收聽完成率',25],['收藏',15],['分享',15]].map(([l,w])=>`<div class="w-row"><span>${l}</span><div class="track"><i style="width:${w*4}%"></i></div><span class="num">${w}%</span></div>`).join('')}<p class="src">已排除機器人與短時間異常點擊。</p></div>`
+      :`<div class="panel weights"><b>名次如何產生</b><p class="src">依有效播放、收藏、搜尋後點擊等指標正規化後計算，並加入時間衰減，避免舊內容長期霸榜。</p></div>`}
+    </div>
+  </div>`;
+};
+
+V.account=()=>{
+  if(!S.user) return `<div class="page-h"><div><h1>登入</h1><p>訪客可以自由搜尋與瀏覽；登入後才能收藏、保留播放紀錄與個人化推薦。</p></div></div>
+    <div class="panel auth-card">
+      <h2 style="font-size:20px">選擇登入方式</h2>
+      <button class="prov" data-login="Google"><span class="pl" style="background:#4285F4">G</span>使用 Google 繼續</button>
+      <button class="prov" data-login="Apple"><span class="pl" style="background:#1F1F1F"></span>使用 Apple 繼續</button>
+      <button class="prov" data-login="Facebook"><span class="pl" style="background:#1877F2">f</span>使用 Facebook 繼續</button>
+      <button class="prov" disabled aria-describedby="ig-note"><span class="pl" style="background:#9AA0A6">IG</span>Instagram（評估中）</button>
+      <p class="src" id="ig-note">Instagram 登入仍在確認可行性，暫不提供。登入為模擬，不會連到任何第三方服務。</p>
+      <p class="src">第三方登入只用來驗證身分；之後可以把其他登入方式綁定到同一個帳號。</p>
+    </div>`;
+  const favItems=[...S.favs].map(id=>{const s=SONGS.find(x=>x.id===id);if(s)return {t:s.title,sub:'歌曲 · '+s.artist,go:['music',id]};const e=epById(id);if(e)return {t:e.title,sub:'Podcast · '+e.show.name,go:['podcast',id]};const n=NEWS.find(x=>x.id===id);if(n)return {t:n.title,sub:'新聞 · '+n.src,go:['news',id]};}).filter(Boolean);
+  const ids=['Google','Apple','Facebook'];
+  return `<div class="page-h"><div><h1>我的帳號</h1><p>收藏、紀錄與偏好都只屬於你，公開排行榜只使用彙總資料。</p></div></div>
+  <div class="acct">
+    <div class="panel" style="padding:20px">
+      <div style="display:flex;gap:12px;align-items:center"><span class="avatar" style="width:48px;height:48px;font-size:18px">雜</span><div><b>示意會員</b><p class="src">會員編號 <span class="num">U-000128</span></p></div></div>
+      <h3 style="font-size:15px;margin-top:20px">登入方式</h3>
+      ${ids.map(p=>`<div class="idrow"><span>${p}</span>${S.user.ids.includes(p)?`<span class="badge ok">${ic('check')}已綁定</span>`:`<button class="btn sm" data-link="${p}">綁定</button>`}</div>`).join('')}
+      <h3 style="font-size:15px;margin-top:20px">偏好設定</h3>
+      <label class="toggle"><span>顯示同步歌詞</span><input type="checkbox" id="pref-lyrics" ${S.prefs.lyrics?'checked':''}></label>
+      <label class="toggle"><span>依收聽紀錄個人化推薦</span><input type="checkbox" id="pref-personal" ${S.prefs.personal?'checked':''}></label>
+      <div style="display:flex;flex-direction:column;gap:8px;margin-top:20px">
+        <button class="btn" data-export>匯出我的資料</button>
+        <button class="btn ghost" data-logout>登出</button>
+        <button class="btn danger" data-del>刪除帳號</button>
+        ${S.confirmDel?`<div class="confirm" role="alert"><b>確定要刪除帳號？</b><span class="src" style="color:var(--ink)">收藏、紀錄與偏好會一併刪除，無法復原。</span><div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn sm danger" data-delyes>確定刪除</button><button class="btn sm" data-delno>取消</button></div></div>`:''}
+      </div>
+    </div>
+    <div class="grid">
+      <div><div class="sec-h"><h2>我的收藏</h2><span class="src num">${favItems.length} 項</span></div>
+        <div class="panel list">${favItems.length?favItems.map(f=>`<div class="item"><div class="meta"><b>${esc(f.t)}</b><span>${esc(f.sub)}</span></div><button class="btn sm" data-go='${JSON.stringify(f.go)}'>開啟</button></div>`).join('')
+        :`<div class="empty"><b>還沒有收藏</b><span>在歌曲、單集或新聞旁按愛心，就會出現在這裡。</span><a class="btn sm" href="#music">去逛逛音樂</a></div>`}</div></div>
+      <div><div class="sec-h"><h2>最近播放</h2>${S.history.length?`<button class="btn sm ghost" data-clearhist>清除紀錄</button>`:''}</div>
+        <div class="panel list">${S.history.length?S.history.map(h=>`<div class="item"><div class="meta"><b>${esc(h.label)}</b><span>今天 <span class="num">${h.at}</span></span></div></div>`).join('')
+        :`<div class="empty"><b>沒有播放紀錄</b><span>登入後播放的歌曲與單集會記錄在這裡。</span></div>`}</div></div>
+    </div>
+  </div>`;
+};
+
+V.contact=()=>{
+  if(S.sent) return `<div class="page-h"><div><h1>合作與意見回饋</h1></div></div>
+    <div class="panel success" role="status"><span class="badge ok">${ic('check')}已送出</span><h2 style="font-size:22px">謝謝你，我們收到了</h2>
+    <p>案件編號 <b class="num">${S.sent}</b>。負責人會在 3 個工作天內以 Email 回覆，處理進度也會寄到你的信箱。</p>
+    <button class="btn" data-newform>再填一份</button></div>`;
+  return `<div class="page-h"><div><h1>合作與意見回饋</h1><p>合作提案、內容授權、功能建議或問題回報，都從這裡送出。</p></div></div>
+  <form class="panel form" id="cform" novalidate>
+    <div class="field"><label for="f-cat">類別</label><select id="f-cat"><option value="">請選擇</option><option>合作提案</option><option>內容授權</option><option>功能建議</option><option>問題回報</option></select></div>
+    <div class="row2">
+      <div class="field"><label for="f-name">聯絡人</label><input id="f-name" autocomplete="name"></div>
+      <div class="field"><label for="f-email">Email</label><input id="f-email" type="email" autocomplete="email" inputmode="email"></div>
+    </div>
+    <div class="field"><label for="f-org">公司或單位<span class="src">（選填）</span></label><input id="f-org" autocomplete="organization"></div>
+    <div class="field"><label for="f-msg">內容</label><textarea id="f-msg" placeholder="請描述你的提案或遇到的問題；問題回報請附上發生的頁面。"></textarea></div>
+    <div class="field"><label for="f-file">附件<span class="src">（選填）</span></label><input id="f-file" type="file" accept=".pdf,.png,.jpg,.jpeg"><small>PDF、PNG、JPG，單檔 10MB 以內；附件會先經過安全掃描。</small></div>
+    <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap"><button class="btn primary" id="f-send">送出</button><span class="src">原型不會真的寄出資料。</span></div>
+  </form>`;
+};
+
+/* ---------- Render + router ---------- */
+const VIEWS=Object.keys(V);
+let current='home';
+function render(){
+  $('#v-'+current).innerHTML=V[current]();
+  const a=$('#acct-btn');
+  a.innerHTML=S.user?'<span class="avatar">雜</span>':'登入';
+  a.className=S.user?'icon-btn':'btn sm';
+  a.setAttribute('aria-label',S.user?'我的帳號':'登入');
+}
+function route(){
+  let v=location.hash.slice(1); if(!VIEWS.includes(v)) v='home';
+  const changed=v!==current; current=v;
+  VIEWS.forEach(n=>$('#v-'+n).hidden=n!==v);
+  $$('[data-nav]').forEach(a=>a.dataset.nav===v?a.setAttribute('aria-current','page'):a.removeAttribute('aria-current'));
+  render();
+  if(changed||S.newsFocus) window.scrollTo(0,0);
+  if(v==='news'&&S.newsFocus){const el=$('#news-'+S.newsFocus);if(el)el.scrollIntoView({block:'center'});}
+}
+addEventListener('hashchange',()=>{if(location.hash!=='#news')S.newsFocus=null;route()});
+
+/* ---------- Players ---------- */
+let mt,pt;
+function selectSong(id,play){
+  S.song=id;S.t=0;clearInterval(mt);S.playing=false;
+  if(play){togglePlay(true)}
+}
+function togglePlay(force){
+  S.playing=force===true?true:!S.playing; clearInterval(mt);
+  if(S.playing){
+    if(S.pplaying){S.pplaying=false;clearInterval(pt)}
+    const s=SONGS.find(x=>x.id===S.song);addHistory(s.title+'｜'+s.artist);
+    mt=setInterval(()=>{S.t=(S.t+1)%32;updMusic()},1000);
+  }
+  if(current==='music') render();
+}
+function updMusic(){
+  if(current!=='music')return;
+  const tEl=$('#ptime');if(!tEl)return;
+  tEl.textContent=fmt(S.t);$('#pbar').style.width=(S.t/32*100)+'%';
+  $$('#lyr button').forEach(b=>b.classList.toggle('cur',S.t>=+b.dataset.s&&S.t<+b.dataset.e));
+}
+function togglePod(){
+  S.pplaying=!S.pplaying;clearInterval(pt);
+  if(S.pplaying){
+    if(S.playing){S.playing=false;clearInterval(mt)}
+    const e=epById(S.ep);addHistory(e.show.name+' EP'+e.no);
+    pt=setInterval(()=>{S.pt=Math.min(S.pt+1,epById(S.ep).dur);if(current==='podcast'){const el=$('#pt');if(el)el.textContent=fmt(S.pt);const segs=SEGS[S.ep];if(segs&&segs.some(sg=>sg.s===S.pt))render()}},1000);
+  }
+  render();
+}
+
+/* ---------- Events ---------- */
+document.addEventListener('click',e=>{
+  const t=e.target.closest('button,a');if(!t)return;
+  const d=t.dataset;
+  if(d.mode){S.mode=d.mode;const f=t.closest('[data-sform]');const inp=f&&f.querySelector('input');if(inp)S.q=inp.value;render();const ni=$('#v-'+current+' [data-sform] input');if(ni)ni.focus();return}
+  if(d.song){selectSong(d.song,true);if(current!=='music')location.hash='music';else render();return}
+  if(t.id==='pp'){togglePlay();return}
+  if(d.seek!=null){S.t=+d.seek;updMusic();return}
+  if(d.fav){
+    if(!S.user){toast('登入後才能收藏',['前往登入','account']);return}
+    S.favs.has(d.fav)?S.favs.delete(d.fav):S.favs.add(d.fav);save();
+    const on=S.favs.has(d.fav);toast(on?'已加入收藏':'已取消收藏');
+    $$(`[data-fav="${d.fav}"]`).forEach(b=>{b.setAttribute('aria-pressed',on);b.innerHTML=ic('heart',on)});return}
+  if(d.go){goto(JSON.parse(d.go));return}
+  if(d.q){S.q=d.q;S.mode='all';location.hash==='#search'?render():location.hash='search';return}
+  if(d.show){S.show=d.show;S.ep=SHOWS.find(x=>x.id===d.show).eps[0].id;S.pt=0;S.findQ='';S.pplaying=false;clearInterval(pt);render();return}
+  if(d.ep){S.ep=d.ep;S.pt=0;S.findQ='';S.pplaying=false;clearInterval(pt);render();return}
+  if(t.id==='podplay'){togglePod();return}
+  if(d.pt!=null){S.pt=+d.pt;render();return}
+  if('clearfind' in d){S.findQ='';render();return}
+  if('ext' in d){toast('原型不連到外部網站；正式版會在新分頁開啟原始頁面');return}
+  if(d.cat){S.newsCat=d.cat;S.newsFocus=null;render();return}
+  if(d.ask){runAsk(d.ask);return}
+  if('report' in d){toast('已收到回報，編輯會檢查這個回答與來源');return}
+  if('newask' in d){S.ask=null;render();$('#askq').focus();return}
+  if(d.chart){S.chart=d.chart;render();return}
+  if(d.login){S.user={ids:[d.login]};save();toast(`已用 ${d.login} 登入（模擬）`);render();return}
+  if(d.link){S.user.ids.push(d.link);save();toast(`已綁定 ${d.link}`);render();return}
+  if('logout' in d){S.user=null;S.confirmDel=false;save();toast('已登出');render();return}
+  if('export' in d){toast('匯出申請已建立，完成後會寄到你的 Email（模擬）');return}
+  if('del' in d){S.confirmDel=true;render();return}
+  if('delno' in d){S.confirmDel=false;render();return}
+  if('delyes' in d){S.user=null;S.favs.clear();S.history=[];S.confirmDel=false;save();toast('帳號已刪除（模擬）');render();return}
+  if('clearhist' in d){S.history=[];save();toast('已清除播放紀錄');render();return}
+  if('newform' in d){S.sent=null;render();return}
+  if(d.cookie){store.set('cookie',d.cookie);$('#cookie').hidden=true;toast(d.cookie==='all'?'已允許分析 Cookie':'只使用必要 Cookie');return}
+  if(t.id==='open-cookie'){$('#cookie').hidden=false;return}
+});
+document.addEventListener('submit',e=>{
+  e.preventDefault();const f=e.target;
+  if(f.matches('[data-sform]')||f.id==='mini-search'){
+    const v=f.querySelector('input').value.trim();S.q=v;if(f.id==='mini-search')S.mode='all';
+    location.hash==='#search'?render():location.hash='search';return}
+  if(f.id==='askf'){const v=$('#askq').value.trim();if(!v){$('#ask-err').hidden=false;$('#askq').focus();return}runAsk(v);return}
+  if(f.id==='cform'){
+    const req=[['f-cat','請選擇類別'],['f-name','請填寫聯絡人'],['f-email','請填寫有效的 Email'],['f-msg','請填寫內容']];
+    let first=null;
+    $$('.field',f).forEach(x=>{x.classList.remove('err');const m=x.querySelector('.err-msg');if(m)m.remove()});
+    req.forEach(([id,msg])=>{const el=$('#'+id);const bad=!el.value.trim()||(id==='f-email'&&!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(el.value));
+      if(bad){const fd=el.closest('.field');fd.classList.add('err');fd.insertAdjacentHTML('beforeend',`<span class="err-msg">${msg}</span>`);el.setAttribute('aria-invalid','true');first=first||el}else el.removeAttribute('aria-invalid')});
+    const file=$('#f-file').files[0];
+    if(file&&file.size>10*1024*1024){const fd=$('#f-file').closest('.field');fd.classList.add('err');fd.insertAdjacentHTML('beforeend','<span class="err-msg">檔案超過 10MB，請壓縮後再上傳</span>');first=first||$('#f-file')}
+    if(first){first.focus();toast('還有欄位需要修正');return}
+    const b=$('#f-send');b.disabled=true;b.textContent='送出中…';
+    setTimeout(()=>{S.sent='CS-20261126-0042';render();toast('已送出')},900);
+  }
+});
+document.addEventListener('input',e=>{
+  if(e.target.id==='findq'){S.findQ=e.target.value;const pos=e.target.selectionStart;render();const i=$('#findq');i.focus();i.setSelectionRange(pos,pos)}
+  if(e.target.id==='askq')$('#ask-err').hidden=true;
+});
+document.addEventListener('change',e=>{
+  if(e.target.id==='pref-lyrics'){S.prefs.lyrics=e.target.checked;save();toast(e.target.checked?'已開啟同步歌詞':'已關閉同步歌詞')}
+  if(e.target.id==='pref-personal'){S.prefs.personal=e.target.checked;save();toast(e.target.checked?'已開啟個人化推薦':'已關閉個人化推薦')}
+});
+function runAsk(q){
+  S.ask=q;S.asking=true;
+  if(current!=='explore')location.hash='explore';else render();
+  setTimeout(()=>{S.asking=false;if(current==='explore')render()},900);
+}
+
+/* ---------- Boot ---------- */
+if(!store.get('cookie',null))$('#cookie').hidden=false;
+route();
+</script>
+</body>
+</html>
